@@ -30,7 +30,7 @@ public class DigitView extends JFrame {
                 gridLabels[i][j] = new JLabel();
                 gridLabels[i][j].setOpaque(true);
                 gridLabels[i][j].setBackground(Color.LIGHT_GRAY);
-                gridLabels[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                gridLabels[i][j].setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
                 gridPanel.add(gridLabels[i][j]);
             }
         }

@@ -21,7 +21,7 @@ public class DigitFactory {
             case 7: return new DigitSeven();
             case 8: return new DigitEight();
             case 9: return new DigitNine();
-            default: throw new IllegalArgumentException("Numero non supportato: " + number);
+            default: throw new IllegalArgumentException("num non supportato: " + number);
         }
     }
 }
