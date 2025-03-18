@@ -8,10 +8,10 @@ package pentamester.strategygrafica;
  *
  * @author shwak
  */
-public class DigitApp {
+public class Main {
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
-            DigitModel model = new DigitModelImpl();
+            DigitModel model = new DigitModel();
             DigitView view = new DigitView();
             new DigitController(model, view);
         });

@@ -8,12 +8,32 @@ package pentamester.strategygrafica;
  *
  * @author shwak
  */
-public interface DigitModel {
-    void increment();
-    void decrement();
-    int getCurrentDigit();
-    boolean canIncrement();
-    boolean canDecrement();
-    boolean[][] getCurrentDigitPattern();
+public class DigitModel {
+    private int currentDigit = 0;
+
+    public int getCurrentDigit() {
+        return currentDigit;
+    }
+
+    public boolean[][] getCurrentPattern() {
+        return DigitFactory.getDigit(currentDigit).getPattern();
+    }
+
+    public void increment() {
+        if (currentDigit < 9) currentDigit++;
+    }
+
+    public void decrement() {
+        if (currentDigit > 0) currentDigit--;
+    }
+
+    public boolean canIncrement() {
+        return currentDigit < 9;
+    }
+
+    public boolean canDecrement() {
+        return currentDigit > 0;
+    }
 }
+
 

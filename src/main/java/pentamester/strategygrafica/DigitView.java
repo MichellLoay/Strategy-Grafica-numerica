@@ -13,64 +13,51 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class DigitView extends JFrame {
-    private final JLabel[][] grid;
-    private final JButton incrementButton;
-    private final JButton decrementButton;
+    private JLabel[][] gridLabels;
+    private JButton incrementButton, decrementButton;
 
     public DigitView() {
-        super("Digit Display MVC");
-
-        grid = new JLabel[7][7];
-        incrementButton = new JButton("Incrementa");
-        decrementButton = new JButton("Decrementa");
-
+        setTitle("Digit Display");
+        setSize(400, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        //griglia
         JPanel gridPanel = new JPanel(new GridLayout(7, 7));
+        gridLabels = new JLabel[7][7];
+
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
-                grid[i][j] = new JLabel();
-                grid[i][j].setOpaque(true);
-                grid[i][j].setBackground(Color.WHITE);
-                grid[i][j].setBorder(BorderFactory.createLineBorder(Color.GRAY));
-                gridPanel.add(grid[i][j]);
+                gridLabels[i][j] = new JLabel();
+                gridLabels[i][j].setOpaque(true);
+                gridLabels[i][j].setBackground(Color.LIGHT_GRAY);
+                gridLabels[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                gridPanel.add(gridLabels[i][j]);
             }
         }
 
-        
         JPanel buttonPanel = new JPanel();
+        incrementButton = new JButton("Incrementa");
+        decrementButton = new JButton("Decrementa");
         buttonPanel.add(decrementButton);
         buttonPanel.add(incrementButton);
 
         add(gridPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    //metodo per aggiornare la griglia secondo il pattern
     public void updateGrid(boolean[][] pattern) {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 if (pattern[i][j]) {
-                    grid[i][j].setBackground(Color.BLACK);
+                    gridLabels[i][j].setBackground(Color.BLACK);
                 } else {
-                    grid[i][j].setBackground(Color.WHITE);
+                    gridLabels[i][j].setBackground(Color.WHITE);
                 }
             }
         }
-    }
-
-    public void setIncrementButtonEnabled(boolean enabled) {
-        incrementButton.setEnabled(enabled);
-    }
-
-    public void setDecrementButtonEnabled(boolean enabled) {
-        decrementButton.setEnabled(enabled);
     }
 
     public void addIncrementListener(ActionListener listener) {
@@ -79,6 +66,14 @@ public class DigitView extends JFrame {
 
     public void addDecrementListener(ActionListener listener) {
         decrementButton.addActionListener(listener);
+    }
+
+    public void setIncrementButtonEnabled(boolean enabled) {
+        incrementButton.setEnabled(enabled);
+    }
+
+    public void setDecrementButtonEnabled(boolean enabled) {
+        decrementButton.setEnabled(enabled);
     }
 }
 

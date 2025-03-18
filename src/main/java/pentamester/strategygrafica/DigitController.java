@@ -12,41 +12,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DigitController {
-    private final DigitModel model;
-    private final DigitView view;
+    private DigitModel model;
+    private DigitView view;
 
     public DigitController(DigitModel model, DigitView view) {
         this.model = model;
         this.view = view;
 
-        // Set up listeners
-        view.addIncrementListener(new IncrementListener());
-        view.addDecrementListener(new DecrementListener());
-
-        // Mostra la cifra iniziale
         updateView();
+
+        view.addIncrementListener(e -> {
+            model.increment();
+            updateView();
+        });
+
+        view.addDecrementListener(e -> {
+            model.decrement();
+            updateView();
+        });
     }
 
     private void updateView() {
-        view.updateGrid(model.getCurrentDigitPattern());
+        view.updateGrid(model.getCurrentPattern());
         view.setIncrementButtonEnabled(model.canIncrement());
         view.setDecrementButtonEnabled(model.canDecrement());
     }
-
-    private class IncrementListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            model.increment();
-            updateView();
-        }
-    }
-
-    private class DecrementListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            model.decrement();
-            updateView();
-        }
-    }
 }
-
